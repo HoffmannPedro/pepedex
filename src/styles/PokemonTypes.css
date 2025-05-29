@@ -1,0 +1,99 @@
+.pokemon-types {
+    position: absolute;
+    /* Ajusta estos valores para ubicar la sección de tipos */
+    top: 100px;
+    left: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.type-badge {
+    padding: 3px 8px;
+    margin: 0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #1E2219;
+    text-align: center;
+    box-shadow:
+        inset 0 1px 4px rgba(255, 255, 255, 0.459), /* luz interna en la parte superior */
+        0 2px 4px rgba(0, 0, 0, 0.3);             /* sombra externa abajo */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);  /* un poco de profundidad en el texto */ 
+}
+
+/* Colores por tipo — usa los mismos que en tu styles.css original */
+.type-badge.water {
+    background-color: #318ae5;
+}
+
+.type-badge.bug {
+    background-color: #88970b;
+}
+
+.type-badge.dark {
+    background-color: #3c2e25;
+    color: #fff;
+}
+
+.type-badge.dragon {
+    background-color: #6651d1;
+}
+
+.type-badge.electric {
+    background-color: #db950b;
+}
+
+.type-badge.fairy {
+    background-color: #d99ee1;
+}
+
+.type-badge.fighting {
+    background-color: #702c17;
+}
+
+.type-badge.fire {
+    background-color: #c02309;
+}
+
+.type-badge.flying {
+    background-color: #5d77d9;
+}
+
+.type-badge.ghost {
+    background-color: #704170;
+    color: #fff;
+}
+
+.type-badge.grass {
+    background-color: #41961a;
+}
+
+.type-badge.ground {
+    background-color: #b58644;
+}
+
+.type-badge.ice {
+    background-color: #76cbf5;
+}
+
+.type-badge.normal {
+    background-color: #aca690;
+}
+
+.type-badge.poison {
+    background-color: #a133a2;
+    color: #fff;
+}
+
+.type-badge.psychic {
+    background-color: #da3166;
+}
+
+.type-badge.rock {
+    background-color: #9c883a;
+}
+
+.type-badge.steel {
+    background-color: #8e8d9c;
+}

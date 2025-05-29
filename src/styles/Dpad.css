@@ -1,0 +1,30 @@
+.dpad-button {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dpad-button.left {
+    top: 451px;
+    /* ajustá según tu fondo */
+    left: 232px;
+}
+
+.dpad-button.right {
+    top: 451px;
+    /* misma línea vertical */
+    left: 298px;
+}
+
+.dpad-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}

@@ -1,0 +1,106 @@
+/* Contenedor vacío, solo sirve de referencia para el absolute de los hijos */
+.lights-panel {
+    position: absolute;
+    top: 20px;
+    /* mueve TODO el bloque al lugar de tu fondo */
+    left: 60px;
+    pointer-events: none;
+}
+
+/* ——— Luz AZUL grande ——— */
+.light.big.blue {
+    position: absolute;
+    top: 4px;
+    left: 1px;
+    /* ajustá al diámetro de tu bombilla grande */
+    width: 81px;
+    height: 81px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* overlay oscuro para “off” */
+    mix-blend-mode: multiply;
+    /* oscurece el píxel de fondo */
+    transition: background-color 1s ease-in-out;
+    /* border: solid .5px white; */
+}
+
+.light.big.blue.on {
+    /* encendida = deja ver todo el color real del fondo */
+    background: radial-gradient(circle at center,
+            rgb(18, 118, 180) 100%,
+            rgba(4, 37, 46) 100%); 
+    mix-blend-mode: screen;    
+}
+
+/* ——— Luces PEQUEÑAS ——— */
+/* Base común (un halo blanco que ilumina) */
+.light.small {
+    position: absolute;
+    width: 22px;
+    /* ajusta al tamaño real */
+    height: 22px;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    /* suma ese halo al color del píxel de fondo */
+    opacity: 0;
+    /* border: solid .5px white; */
+}
+
+/* Posicionamiento individual */
+/* Rojo */
+.light.small.red {
+    /* ajusta para alinear con tu bombilla roja */
+    top: 6px;
+    left: 113px;
+
+    background: radial-gradient(circle at center,
+            rgba(155, 25, 13) 100%,
+            rgba(255, 255, 255, 0) 60%);
+}
+
+/* Naranja */
+.light.small.orange {
+    /* ajusta para alinear con tu bombilla naranja */
+    top: 6px;
+    left: 157px;
+
+    background: radial-gradient(circle at center,
+            rgba(195, 137, 1) 100%,
+            rgba(255, 255, 255, 0) 60%);
+}
+
+/* Verde */
+.light.small.green {
+    /* ajusta para alinear con tu bombilla verde */
+    top: 6px;
+    left: 202px;
+
+    background: radial-gradient(circle at center,
+            rgba(85, 227, 49, 0.76) 100%,
+            rgba(255, 255, 255, 0) 60%);
+}
+
+/* ——— Animación de parpadeo ——— */
+@keyframes blink-light {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.light.small.red.blink {
+    animation: blink-light 1s infinite;
+}
+
+.light.small.orange.blink {
+    animation: blink-light 1s infinite 0.2s;
+}
+
+.light.small.green.blink {
+    animation: blink-light 1s infinite 0.4s;
+}

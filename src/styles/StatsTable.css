@@ -1,0 +1,30 @@
+.stats-table-wrapper {
+  position: absolute;
+  /* Ajusta esto para que la tabla quepa en tu fondo */
+  top: 218px;
+  left: 613px;
+  width: 300px;  /* o el ancho que necesites */
+}
+
+.stats-table {
+    width: 138px;
+    height: 233px;
+    border-collapse: collapse;
+    background-color: transparent;
+    color: #DFC9AD;
+    font-weight: 700;
+    text-shadow: #000 1px 1px 2px;
+    /* border: 1px solid #fff; */
+}
+
+.stats-table th,
+.stats-table td {
+    font-size: 23.8px;
+    text-align: end;
+    padding-right: 15px;
+}
+
+.stats-table th {
+  background-color: #eee;
+  font-weight: bold;
+}

@@ -1,0 +1,54 @@
+.pokedex-shell {
+    position: relative;
+    width: 800px;
+    height: 700px;
+    background-image: url('/pokedex-bg.png');
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+}
+
+.pokedex-shell .search-input {
+    position: absolute;
+    top: 475px;     /* ajustá hacia abajo */
+    left: 457.5px;    /* ajustá hacia la derecha */
+    width: 279px;  /* si querés cambiar el ancho solo del input */
+    height: 55.5px;
+    border-radius: 8px;
+    background-color: #242424;
+  }
+  
+  .pokedex-shell .search-button {
+    position: absolute;
+    top: 561.5px;     /* puede ser distinto del input */
+    left: 467px;   /* movelo donde quieras */
+    width: 73px;
+    height: 39px;
+    background-color: transparent;
+    border-radius: 20px;
+    /* border: solid 1px white; */
+    padding: 0;
+  }
+  
+
+
+
+
+
+
+
+
+
+/* .search-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 200px;
+}
+
+.pokemon-display {
+    position: absolute;
+    top: 80pc;
+    left: 50px;
+    width: 300px;
+} */
