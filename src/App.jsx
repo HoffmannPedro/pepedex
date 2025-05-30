@@ -10,6 +10,8 @@ import Dpad from './components/Dpad';
 import LightsPanel from './components/LightsPanel';
 import PowerButton from './components/PowerButton';
 
+import powerOnSound from './assets/sounds/power-on.wav';
+
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -114,7 +116,7 @@ function App() {
     <>
       <audio
         ref={audioRef}
-        src='/src/assets/sounds/power-on.wav'
+        src={powerOnSound}
         preload='auto' />
 
       <PokedexShell>
