@@ -1,23 +1,60 @@
 .power-button {
-    position: absolute;
-    /* Ajustá posición para que quede sobre el botón físico de tu fondo */
-    top: 563.5px;
-    left: 680px;
-    width: 53px;
-    height: 36px;
-    background: #222;
-    color: #fff;
-    /* border: .5px solid white; */
-    border-radius: 18px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  
-  .power-button.on {
-    background: rgba(213, 123, 6, 0.6); /* Verde cuando está encendida */
-  }
-  
-  .power-button.off {
-    background: transparent; /* Rojo cuando está apagada */
-  }
-  
+  position: absolute;
+  /* Ajustá posición para que quede sobre el botón físico de tu fondo */
+  top: 562px;
+  left: 679px;
+  width: 55px;
+  height: 38px;
+  padding: 0;
+  background: transparent;
+  /* border: .5px solid white; */
+  border-radius: 17px;
+  cursor: pointer;
+  transition: ;
+  color: black;
+
+  box-shadow:
+    inset 0 1px 1px rgba(34, 8, 9, 0.6),
+    /* luz interna */
+    inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+    /* sombra interna */
+    0 4px 6px rgba(0, 0, 0, 0.4);
+  /* sombra exterior */
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s,
+    border-color 0.3s;
+}
+
+.power-icon {
+  padding-top: 5px;
+  padding-left: .5px;
+  width: 24px;
+  height: 24px;
+  /* hereda color de .power-button */
+
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke: currentColor;
+}
+
+.power-button.off {
+  color: black;
+  /* negro cuando está apagada */
+}
+
+.power-button.on {
+  color: rgb(73, 184, 4);
+  /* verde cuando está encendida */
+
+}
+
+.power-button:active {
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.6),
+    0 2px 3px rgba(0, 0, 0, 0.3);
+  transform: translateY(1px);
+}

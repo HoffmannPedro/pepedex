@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 import PokedexShell from './components/PokedexShell';
@@ -19,6 +19,8 @@ function App() {
   const [isOn, setIsOn] = useState(false);
   const [statusLight, setStatusLight] = useState('off');
 
+  const audioRef = useRef(null);
+
   
   // Carga la lista completa de Pokémon
   useEffect(() => {
@@ -31,6 +33,10 @@ function App() {
   // Enciende o apaga la pokedex
   const handlePowerToggle = () => {
     if (!isOn) {
+      audioRef.current?.play().catch(() => {
+
+      })
+
       // Encender
       setIsOn(true);
       setStatusLight('loading');
@@ -106,6 +112,11 @@ function App() {
 
   return (
     <>
+      <audio
+        ref={audioRef}
+        src='/src/assets/sounds/power-on.wav'
+        preload='auto' />
+
       <PokedexShell>
         <PokemonDisplay info={pokemonInfo} />
         <Dpad
