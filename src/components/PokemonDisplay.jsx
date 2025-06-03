@@ -1,8 +1,44 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import '../styles/PokemonDisplay.css';
-import { motion, AnimatePresence, useAnimation } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
-export default function PokemonDisplay({ info }) {
+import ballOpenSound from '../assets/sounds/ball-open.wav';
+import ballCloseSound from '../assets/sounds/ball-close.wav';
+
+export default function PokemonDisplay({ info, isShuttingDown  }) {
+    // Refs para los audios
+    const openAudioRef = useRef(null);
+    const closeAudioRef = useRef(null);
+
+    // Ref para saber si es el primer 'info' que llega.
+    const prevId = useRef(null);
+
+    useEffect(() => {
+        if (!info) return;
+
+        if (prevId.current === null) {
+            // Reproduce apertura inmediatamente.
+            openAudioRef.current?.play().catch(() => {});
+        } else {
+            
+            // Si el componente va a desmontarse (o info cambia), reproduce.
+            closeAudioRef.current?.play().catch(() => {});
+
+            setTimeout(() => {
+                openAudioRef.current?.play().catch(() => {});
+            }, 1200);
+            if (!isShuttingDown) {
+                closeAudioRef.current?.play().catch(() => {});
+            }
+            
+            // Si el componente va a desmontarse (o info cambia), reproduce.
+            setTimeout(() => {
+                openAudioRef.current?.play().catch(() => {});
+            }, 1200);
+        }
+        prevId.current = info.id;
+    }, [info]);
+
     if (!info) return null; //Nada que mostrar si no hay pokémon
 
     const variants = {
@@ -44,6 +80,9 @@ export default function PokemonDisplay({ info }) {
 
     return (
         <div className='pokemon-display'>
+            <audio ref={openAudioRef} src={ballOpenSound} preload='auto' />
+            <audio ref={closeAudioRef} src={ballCloseSound} preload='auto' />
+
             <div className='sprite-wrapper'>
                 <AnimatePresence mode="wait">
                     <motion.img
