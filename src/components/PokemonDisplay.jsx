@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ballOpenSound from '../assets/sounds/ball-open.wav';
 import ballCloseSound from '../assets/sounds/ball-close.wav';
 
-export default function PokemonDisplay({ info, isShuttingDown  }) {
+export default function PokemonDisplay({ info, isShuttingDown, volume  }) {
     // Refs para los audios
     const openAudioRef = useRef(null);
     const closeAudioRef = useRef(null);
@@ -13,31 +13,41 @@ export default function PokemonDisplay({ info, isShuttingDown  }) {
     // Ref para saber si es el primer 'info' que llega.
     const prevId = useRef(null);
 
+    // Evita reproducir close-ball cuando se apaga la pokedex.
+    useEffect(() => {
+        if (info === null) {
+            prevId.current = null;
+        }
+    }, [info]);
+
     useEffect(() => {
         if (!info) return;
 
+        if (openAudioRef.current) openAudioRef.current.volume = volume;
+        if (closeAudioRef.current) closeAudioRef.current.volume = volume;
+        
         if (prevId.current === null) {
             // Reproduce apertura inmediatamente.
-            openAudioRef.current?.play().catch(() => {});
+            openAudioRef.current?.play();
         } else {
-            
-            // Si el componente va a desmontarse (o info cambia), reproduce.
-            closeAudioRef.current?.play().catch(() => {});
-
-            setTimeout(() => {
-                openAudioRef.current?.play().catch(() => {});
-            }, 1200);
             if (!isShuttingDown) {
-                closeAudioRef.current?.play().catch(() => {});
+                closeAudioRef.current?.play();
+                // Si el componente va a desmontarse (o info cambia), reproduce.
+                setTimeout(() => {
+                    openAudioRef.current?.play();
+                }, 1200);
             }
             
+            
             // Si el componente va a desmontarse (o info cambia), reproduce.
+            closeAudioRef.current?.play();
+
             setTimeout(() => {
-                openAudioRef.current?.play().catch(() => {});
+                openAudioRef.current?.play();
             }, 1200);
         }
         prevId.current = info.id;
-    }, [info]);
+    }, [info, volume]);
 
     if (!info) return null; //Nada que mostrar si no hay pokémon
 

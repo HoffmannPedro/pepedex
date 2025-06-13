@@ -1,4 +1,142 @@
+/* Dpad.css */
+.dpad-container {
+  position: relative;
+  width: 120px;
+  /* el tamaño total de la cruceta + botón mute */
+  height: 120px;
+
+  perspective: 400px;
+}
+
+/* Estilo general para cada botón de la cruceta */
 .dpad-button {
+  position: absolute;
+  border-radius: 4px;
+  background-color: transparent;
+  color: rgba(19, 19, 19, 0.714);
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  /* border: solid white 1px; */
+
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3)g;
+}
+
+/* MOVIMIENTO DE BOTONES */
+.dpad-button.up:active {
+  box-shadow: inset 0 6px 8px rgba(0,0,0,0.5);
+}
+.dpad-button.down:active {
+  transform: translateY(4px) rotate(-3deg);
+  box-shadow: inset 0 -4px 6px rgba(0,0,0,0.4);
+}
+.dpad-button.left:active {
+  transform: translateX(-4px) rotate(-3deg);
+  box-shadow: inset 4px 0 6px rgba(0,0,0,0.4);
+}
+.dpad-button.right:active {
+  transform: translateX(4px) rotate(3deg);
+  box-shadow: inset -4px 0 6px rgba(0,0,0,0.4);
+}
+/* hundimiento en el eje Z + tilt según botón */
+.dpad-button.up:active {
+  transform: translateZ(-10px) rotateX(15deg);
+}
+.dpad-button.down:active {
+  transform: translateZ(-10px) rotateX(-15deg);
+}
+.dpad-button.left:active {
+  transform: translateZ(-10px) rotateY(-15deg);
+}
+.dpad-button.right:active {
+  transform: translateZ(-10px) rotateY(15deg);
+}
+.dpad-button.mute:active {
+  transform: translateZ(-4px);
+}
+
+.dpad-button .dpad-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Flecha arriba (volumen +) */
+.dpad-button.up {
+  padding: 0;
+  width: 34px;
+  height: 36px;
+  bottom: 236px;
+  left: 280px;
+}
+
+/* Flecha izquierda (anterior) */
+.dpad-button.left {
+  padding: 0;
+  width: 36px;
+  height: 34px;
+  bottom: 204px;
+  left: 246px;
+}
+
+/* Flecha derecha (siguiente) */
+.dpad-button.right {
+  padding: 0;
+  width: 36px;
+  height: 34px;
+  bottom: 204px;
+  left: 312px;
+}
+
+/* Flecha abajo (volumen -) */
+.dpad-button.down {
+  padding: 0;
+  width: 34px;
+  height: 36px;
+  bottom: 169px;
+  left: 280px;
+}
+
+/* Botón Mute: podemos ubicarlo centrado debajo o al lado de la cruceta */
+.dpad-button.mute {
+  bottom: 112px;
+  /* por ejemplo, justo debajo de la cruceta */
+  left: 276px;
+  width: 43px;
+  height: 20px;
+  background-color: transparent;
+  /* border: solid white 1px; */
+  font-size: 15px;
+  padding: 0;
+  border-radius: 5px;
+}
+
+/* Si está silenciado, cambiamos color o estilo */
+.dpad-button.mute.muted {
+  background-color: #800;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .dpad-button {
     position: absolute;
     width: 30px;
     height: 30px;
@@ -15,16 +153,19 @@
 .dpad-button.left {
     top: 451px;
     /* ajustá según tu fondo */
+/*  
     left: 232px;
 }
-
 .dpad-button.right {
     top: 451px;
     /* misma línea vertical */
+/*
     left: 298px;
 }
 
 .dpad-button:disabled {
     opacity: 0.3;
     cursor: not-allowed;
-}
+} 
+
+*/

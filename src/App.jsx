@@ -18,8 +18,12 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(null);
   const [isOn, setIsOn] = useState(false);
   const [statusLight, setStatusLight] = useState('off');
-
   const [isShuttingDown, setIsShuttingDown] = useState(false);
+
+  const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
+
+  const effectiveVolume = isMuted ? 0 : volume;
 
   
   // Carga la lista completa de Pokémon
@@ -111,18 +115,63 @@ function App() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (!isOn) return;
+
+    if (e.key === 'ArrowLeft') {
+      handlePrev();
+    }
+    if (e.key === 'ArrowRight') {
+      handleNext();
+    }
+  }
+  useEffect(() => {
+    if (isOn) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [isOn, pokemonList, currentIndex]);
+
+  const handleVolumeUp = () => {
+    setIsMuted(false);
+    setVolume(prev => Math.min(prev + 0.1, 1));
+  };
+
+  const handleVolumeDown = () => {
+    setVolume(prev => {
+      const next = Math.max(prev - 0.1, 0);
+      if (next === 0) setIsMuted(true);
+      return next;
+    });
+  };
+
+  const handleMuteToggle = () => {
+    setIsMuted(prev => !prev)
+  }
+
   return (
     <>
       <PokedexShell>
-        <PokemonDisplay info={pokemonInfo} isShuttingDown={isShuttingDown} />
+        <PokemonDisplay 
+          info={pokemonInfo} 
+          isShuttingDown={isShuttingDown} 
+          volume={effectiveVolume}/>
         <Dpad
           onPrev={handlePrev}
           onNext={handleNext}
+          onVolumeUp={handleVolumeUp}
+          onVolumeDown={handleVolumeDown}
+          onMuteToggle={handleMuteToggle}
+          isMuted={isMuted}
           disablePrev={!isOn || currentIndex <= 0}
           disableNext={!isOn || currentIndex === null || currentIndex >= pokemonList.length - 1}
+          disableUp={!isOn}
+          disableDown={!isOn}
         />
-        <PokemonTypes types={pokemonInfo?.types} />
-        <StatsTable stats={pokemonInfo?.stats} />
+        <PokemonTypes 
+          types={pokemonInfo?.types} />
+        <StatsTable 
+          stats={pokemonInfo?.stats} />
         <SearchBar
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
@@ -132,6 +181,7 @@ function App() {
         <PowerButton
           isOn={isOn}
           onToggle={handlePowerToggle}
+          volume={effectiveVolume}
         />
         <LightsPanel
           isOn={isOn}

@@ -5,7 +5,7 @@ import powerOnSound from '../assets/sounds/power-on.wav';
 import powerOffSound from'../assets/sounds/power-off.wav'
 
 
-export default function PowerButton({ isOn, onToggle }) {
+export default function PowerButton({ isOn, onToggle, volume }) {
 
     const onAudioRef = useRef(null);
     const offAudioRef = useRef(null);
@@ -19,6 +19,9 @@ export default function PowerButton({ isOn, onToggle }) {
             return;
         }
 
+        if (onAudioRef.current) onAudioRef.current.volume = volume;
+        if (offAudioRef.current) offAudioRef.current.volume = volume;
+
         if (isOn) {
             onAudioRef.current?.play().catch(() => {
 
@@ -28,7 +31,7 @@ export default function PowerButton({ isOn, onToggle }) {
                 
             })
         }
-    }, [isOn]);
+    }, [isOn, volume]);
 
     return (
         <button
